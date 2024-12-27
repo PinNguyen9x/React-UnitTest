@@ -36,4 +36,23 @@ export const handlers = [
       email: "john.doe@example.com",
     });
   }),
+  http.post("/api/auth/signin", async ({ request }) => {
+    const { email, password } = (await request.json()) as {
+      email: string;
+      password: string;
+    };
+
+    // Simulate basic validation
+    if (email === "test@example.com" && password === "password123") {
+      return HttpResponse.json({
+        message: "Sign in successful",
+        user: { id: 1, email: "test@example.com" },
+      });
+    }
+
+    return HttpResponse.json(
+      { message: "Invalid email or password" },
+      { status: 401 }
+    );
+  }),
 ];
