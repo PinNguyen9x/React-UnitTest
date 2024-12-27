@@ -54,9 +54,11 @@ describe("WorkList Component", () => {
   });
 
   it("handles fetch error", async () => {
-    global.fetch = jest
-      .fn()
+    // Mock the Promise.all to reject
+    jest
+      .spyOn(Promise, "all")
       .mockRejectedValueOnce(new Error("Failed to fetch"));
+
     render(<WorkList />);
     expect(await screen.findByText("Failed to fetch")).toBeInTheDocument();
   });

@@ -19,19 +19,42 @@ export const WorkList: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [worksResponse, authorsResponse] = await Promise.all([
-          fetch("api/works"),
-          fetch("api/authors"),
+        const [worksData, authorsData] = await Promise.all([
+          new Promise<Work[]>((resolve) => {
+            setTimeout(() => {
+              resolve([
+                {
+                  id: 1,
+                  title: "Work 1",
+                  authorId: 1,
+                },
+                {
+                  id: 2,
+                  title: "Work 2",
+                  authorId: 2,
+                },
+              ]);
+            }, 200);
+          }),
+          new Promise<Author[]>((resolve) => {
+            setTimeout(() => {
+              resolve([
+                {
+                  id: 1,
+                  name: "Author 1",
+                },
+                {
+                  id: 2,
+                  name: "Author 2",
+                },
+              ]);
+            }, 200);
+          }),
         ]);
 
-        if (!worksResponse.ok || !authorsResponse.ok) {
+        if (!worksData || !authorsData) {
           throw new Error("Failed to fetch data");
         }
-
-        const [worksData, authorsData] = await Promise.all([
-          worksResponse.json(),
-          authorsResponse.json(),
-        ]);
 
         setWorks(worksData);
         setAuthors(authorsData);
