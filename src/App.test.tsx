@@ -14,7 +14,7 @@ const renderWithRouter = (initialEntry = "/") => {
 describe("App Component", () => {
   it("renders the home page by default", () => {
     renderWithRouter();
-    expect(screen.getByText("Home Page")).toBeInTheDocument();
+    expect(screen.getByText("Work List App")).toBeInTheDocument();
   });
 
   it("renders about page on /about route", () => {

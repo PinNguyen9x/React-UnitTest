@@ -1,31 +1,36 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header/Header";
-import SignInForm from "../components/SignInForm/SignInForm";
 import { useAuth } from "../hooks/useAuth";
-import { WorkList } from "../WorkList";
+import SignInForm from "../components/SignInForm/SignInForm";
 
-const HomePage = () => {
+export default function HomePage() {
   const [showSignIn, setShowSignIn] = useState(false);
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  // Redirect to user page if authenticated
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/user");
-    }
-  }, [isAuthenticated, navigate]);
+  if (isAuthenticated) {
+    navigate("/user");
+    return null;
+  }
 
   return (
     <div>
-      <Header onSignInClick={() => setShowSignIn(true)} />
+      <header className="flex justify-between items-center p-4 bg-gray-100">
+        <h1>Work List App</h1>
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded"
+          onClick={() => setShowSignIn(true)}
+        >
+          Sign In
+        </button>
+      </header>
       <main className="p-4">
-        <WorkList />
+        {showSignIn ? (
+          <SignInForm onClose={() => setShowSignIn(false)} />
+        ) : (
+          <div>No works available</div>
+        )}
       </main>
-      {showSignIn && <SignInForm onClose={() => setShowSignIn(false)} />}
     </div>
   );
-};
-
-export default HomePage;
+}

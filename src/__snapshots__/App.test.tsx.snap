@@ -72,7 +72,25 @@ exports[`App Component matches snapshot 1`] = `
     </div>
   </nav>
   <div>
-    Home Page
+    <header
+      class="flex justify-between items-center p-4 bg-gray-100"
+    >
+      <h1>
+        Work List App
+      </h1>
+      <button
+        class="px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Sign In
+      </button>
+    </header>
+    <main
+      class="p-4"
+    >
+      <div>
+        No works available
+      </div>
+    </main>
   </div>
 </div>
 `;

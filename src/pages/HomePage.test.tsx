@@ -23,9 +23,7 @@ describe("HomePage", () => {
     fireEvent.click(signInButton);
 
     // Use data-testid to uniquely identify the sign in form heading
-    expect(
-      screen.getByRole("heading", { name: "Sign In" })
-    ).toBeInTheDocument();
+    expect(screen.getByText("SignIn Form")).toBeInTheDocument();
   });
 
   it("should redirect to user page when authenticated", () => {

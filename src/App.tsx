@@ -12,6 +12,7 @@ const App: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<div>About Page</div>} />
         <Route path="/contact" element={<div>Contact Page</div>} />
+        <Route path="/signin" element={<div></div>} />
       </Routes>
     </AuthProvider>
   );
