@@ -1,12 +1,23 @@
 module.exports = {
-  preset: "ts-jest",
-  testEnvironment: "jsdom", // đảm bảo sử dụng 'jsdom' cho môi trường browser
+  testEnvironment: "jsdom",
+  setupFiles: ["<rootDir>/jest.setup.js"],
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
   moduleNameMapper: {
-    "\\.(css|less|scss)$": "identity-obj-proxy",
-    "\\.(jpg|jpeg|png|svg)$": "<rootDir>/__mocks__/fileMock.js",
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+    "^@/(.*)$": "<rootDir>/src/$1",
   },
   transform: {
+    "^.+\\.(ts|tsx)$": "ts-jest",
     "^.+\\.(js|jsx)$": "babel-jest",
+  },
+  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  globals: {
+    "ts-jest": {
+      tsconfig: "<rootDir>/tsconfig.json",
+    },
+  },
+  testEnvironmentOptions: {
+    customExportConditions: ["node", "node-addons"],
   },
 };

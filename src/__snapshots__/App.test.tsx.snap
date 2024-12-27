@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Component matches snapshot 1`] = `
+<div>
+  <nav
+    class="bg-white shadow-lg"
+  >
+    <div
+      class="max-w-6xl mx-auto px-4"
+    >
+      <div
+        class="flex justify-between items-center h-16"
+      >
+        <div
+          class="flex-shrink-0"
+        >
+          <a
+            class="text-xl font-bold text-gray-800"
+            data-discover="true"
+            href="/"
+          >
+            Logo
+          </a>
+        </div>
+        <div
+          class="hidden md:block"
+        >
+          <ul
+            class="flex space-x-8"
+          >
+            <li>
+              <a
+                class="text-gray-600 hover:text-blue-600 transition duration-300"
+                data-discover="true"
+                data-testid="home-link"
+                href="/"
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a
+                class="text-gray-600 hover:text-blue-600 transition duration-300"
+                data-discover="true"
+                data-testid="about-link"
+                href="/about"
+              >
+                About
+              </a>
+            </li>
+            <li>
+              <a
+                class="text-gray-600 hover:text-blue-600 transition duration-300"
+                data-discover="true"
+                data-testid="contact-link"
+                href="/contact"
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+        <button
+          class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 
+                     transition duration-300 focus:outline-none focus:ring-2 
+                     focus:ring-blue-500 focus:ring-opacity-50"
+          data-testid="about-button"
+        >
+          Go to About
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div>
+    Home Page
+  </div>
+</div>
+`;

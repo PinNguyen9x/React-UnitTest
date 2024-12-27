@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
+interface UserData {
+  id: number;
+  name: string;
+  email: string;
+}
 
 interface UserProps {
   userId: number;
 }
 
-const User = ({ userId }: UserProps) => {
-  const [user, setUser] = useState<{ name: string; email: string }>();
-  const [error, setError] = useState(null);
+const User: React.FC<UserProps> = ({ userId }) => {
+  const [user, setUser] = useState<UserData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -14,25 +21,33 @@ const User = ({ userId }: UserProps) => {
         const response = await fetch(
           `https://jsonplaceholder.typicode.com/users/${userId}`
         );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch user");
+        }
+
         const data = await response.json();
         setUser(data);
-      } catch (error) {
-        // setError(error?.message);
-        console.log(error);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An error occurred");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchUser();
   }, [userId]);
 
+  if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-  if (!user) return <div>Loading...</div>;
+  if (!user) return <div>No user found</div>;
 
   return (
     <div>
-      <h1>{user.name || ""}</h1>
-      <p>Email: {user.email || ""}</p>
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
     </div>
   );
 };
+
 export default User;
