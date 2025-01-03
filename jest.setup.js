@@ -1,3 +1,5 @@
+import "@testing-library/react";
+import "@testing-library/dom";
 // Add fetch and Response polyfills
 const { TextEncoder, TextDecoder } = require("util");
 global.TextEncoder = TextEncoder;
